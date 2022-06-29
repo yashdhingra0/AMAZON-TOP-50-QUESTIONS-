@@ -1,0 +1,54 @@
+
+total way btane h ip address likhne ke 
+class Solution {
+public:
+    
+    bool isvalid(string str){
+        
+        if(stoi(str)>=256){
+            return false;
+        }
+        
+        if(str[0]=='0'){
+            return false;
+        }
+        
+        return true;
+    }
+    void solve(vector<string> &ans , vector<string> & curr , int idx , string s){
+        if(idx>s.size() || curr.size()>4){
+            return;
+        }
+        if(idx==s.size() && curr.size()==4){
+            string a =curr[0] + '.'+ curr[1]+ '.' + curr[2] + '.'+ curr[3];
+        ans.push_back(a);
+        return;}
+        
+       curr.push_back(s.substr(idx,1));
+        solve(ans,curr,idx+1,s);
+        curr.pop_back();
+        
+        if(idx+2<=s.size() && isvalid(s.substr(idx,2))){
+            curr.push_back(s.substr(idx,2));
+            solve(ans,curr,idx+2,s);
+            curr.pop_back();
+        }
+        
+        //3rd Option
+        if(idx+3<=s.size() && isvalid(s.substr(idx,3))){
+            curr.push_back(s.substr(idx,3));
+            solve(ans,curr,idx+3,s);
+            curr.pop_back();
+        }
+        
+    
+        
+    }
+    vector<string> restoreIpAddresses(string s) {
+        vector<string>ans;
+        vector<string>curr;
+        solve(ans,curr,0,s);
+        return ans;
+        
+    }
+};
