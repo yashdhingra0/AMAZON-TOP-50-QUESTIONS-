@@ -1,0 +1,33 @@
+3 CASES CHECK KRENGE 
+1ST JB 2 ONES KE BEECH M AAYE 
+THEN JB LAST TK O HN JB SHURU M 0S HON TO TEENO KA MAX LENA H
+class Solution {
+public:
+    
+    int maxDistToClosest(vector<int>& seats) {
+        int l=-1,n=seats.size(),maxDist=0;
+		
+        for(int i=0;i<n;i++)
+        {
+		//we will only see the cases when seats[i] is 1
+            if(seats[i]==1)
+            {
+			//if seats are empty from starting than l will be -1
+                if(l==-1)
+                    maxDist=i;  //than max dist will be the first encounterd 1
+                else
+                    maxDist=max(maxDist,(i-l)/2);  
+					/*if a second 1 is encountered we will calculate the maximum distance between
+					those two  with (i-l/2) 
+                 */
+				 //making the l equal to current position of i
+				 l=i;
+            }
+            
+        } 
+		//cheking the final condition if there is no person at right most  side
+        if(seats[n-1]==0)
+            maxDist = max(maxDist,n-1- l);
+        return maxDist;
+    }
+};
