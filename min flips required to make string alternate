@@ -1,0 +1,63 @@
+Input : str = “001”
+Output : 1
+Minimum number of flips required = 1
+We can flip 1st bit from 0 to 1 
+
+/ C++ program to find minimum number of flip to make binary
+// string alternate
+#include <bits/stdc++.h>
+using namespace std;
+ 
+
+char flip(char ch) { return (ch == '0') ? '1' : '0'; }
+ 
+
+int getFlipWithStartingCharcter(string str, char expected)
+{
+    int flipCount = 0;
+    for (int i = 0; i < str.length(); i++) {
+       
+        if (str[i] != expected)
+            flipCount++;
+ 
+        
+        expected = flip(expected);
+    }
+    return flipCount;
+}
+ 
+
+int minFlipToMakeStringAlternate(string str)
+{
+    //  return minimum of following two
+    //  1) flips when alternate string starts with 0
+    //  2) flips when alternate string starts with 1
+    return min(getFlipWithStartingCharcter(str, '0'),
+               getFlipWithStartingCharcter(str, '1'));
+}
+
+
+1 aur solution
+
+
+
+
+
+
+
+
+int minReplacement(string s, int len)
+{
+    int ans = 0;
+    for (int i = 0; i < len; i++) {
+ 
+        // If there is 1 at even index positions
+        if (i % 2 == 0 && s[i] == '1')
+            ans++;
+ 
+        // If there is 0 at odd index positions
+        if (i % 2 == 1 && s[i] == '0')
+            ans++;
+    }
+    return min(ans, len - ans);
+}
