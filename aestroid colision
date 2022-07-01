@@ -1,0 +1,33 @@
+
+class Solution {
+public:
+
+    The problem will be solved using a stack
+    Iterate throgh the array if you encounter a positive element directly push in stack
+    if you encounter negative element the following possiblities can ouccer
+    1.That negative element can destroy the positives to the left and can move right utill it finds a positive value that can destroy the negative astorids. in that case pop untill there a positive elements with less than absolute value of the negative aseroid,
+    2.doing this either you reach the end off the array or you reach a negative element ,in this case push it in the stack as it cannot cancel more elements.
+    3.Top element is positive with value as abs(negative element) in that case pop that element from the stack without pushing the negative element.
+
+
+vector<int> asteroidCollision(vector<int>& asteroids) {
+	stack<int>s;
+	for(int i:asteroids){
+		if(i>0)s.push(i);
+		else {
+			while(!s.empty()&&s.top()>0&&s.top()+i<0)s.pop();
+			if(s.empty()||s.top()<0)s.push(i);
+			else if(s.top()+i==0){s.pop();}
+
+		}
+	}
+	vector<int>ans;
+	while(!s.empty()){
+		ans.push_back(s.top());
+		s.pop();
+	}
+	reverse(ans.begin(),ans.end());
+	return ans;
+}
+
+};
