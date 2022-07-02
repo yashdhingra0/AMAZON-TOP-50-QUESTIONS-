@@ -1,0 +1,26 @@
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if(!root) return nullptr;
+        queue<Node*> q;
+        q.push(root);        
+        while(!q.empty()){
+            int size=q.size();
+           // Node* rightNode = nullptr;                    // set rightNode to null initially
+            for(int i = 0;i<size;i++) { 
+                 auto curr = q.front(); q.pop();
+                if(i==size-1)
+                curr->next=NULL;
+                else
+                curr->next=q.front();
+                             
+                                       
+                if(curr -> left)                          // if a child exists
+                    q.push(curr -> left); 
+                if(curr -> left) // IMP: push right first to do right-to-left BFS
+                    q.push(curr -> right);                  // then push left
+            }
+        }
+        return root;
+    }
+};
