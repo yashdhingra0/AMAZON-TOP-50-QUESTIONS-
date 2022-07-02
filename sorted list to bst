@@ -1,0 +1,33 @@
+find middle of the list make it as a root node and check if mid==head and then return root 
+
+class Solution {
+public:
+    ListNode* mid(ListNode* head)
+    {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* prev = head;
+        while(fast != NULL && fast->next != NULL)
+        {
+            prev = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        if(prev != NULL)
+            prev ->next = NULL;
+        return slow;
+    }
+    TreeNode* sortedListToBST(ListNode* head) {
+        if(head == NULL)
+            return NULL;
+        ListNode* mi = mid(head);
+        TreeNode* root = new TreeNode(mi->val);
+        if(mi == head)
+            return root;
+        root->left = sortedListToBST(head);
+        root->right = sortedListToBST(mi->next);
+        
+        return root;
+        
+    }
+};
