@@ -1,0 +1,28 @@
+int smallestSumSubarr(int arr[], int n)
+{
+	int meh=0;
+  int msf=INT_MAX;
+	//int min_ending_here = INT_MAX;
+	
+	// to store the minimum value encountered so far
+	//int min_so_far = INT_MAX;
+	
+	// traverse the array elements
+	for (int i=0; i<n; i++)
+	{
+		// if min_ending_here > 0, then it could not possibly
+		// contribute to the minimum sum further
+		if (meh > 0)
+			meh = arr[i];
+		
+		// else add the value arr[i] to min_ending_here
+		else
+			meh += arr[i];
+		
+		// update min_so_far
+		msf = min(msf,meh);		
+	}
+	
+	// required smallest sum contiguous subarray value
+	return msf;
+}
