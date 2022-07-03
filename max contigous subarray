@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& a) {
+        int meh=0; // ye btayega ki at i index max ending kitni hh
+        int n=a.size();
+        int msf=INT_MIN;
+    for(int i=0;i<n;i++){
+        meh=meh+a[i];
+        if(meh<a[i]){ //yahan hmne check kiya ki agr at index pe positive bnn rha hh to leave krdo purana 
+            meh=a[i];
+        }
+        if(msf<meh){
+            msf=meh;
+        }
+    }
+        return msf;
+    }
+};
