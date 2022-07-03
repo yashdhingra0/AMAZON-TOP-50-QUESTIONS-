@@ -1,0 +1,17 @@
+int maxProfit(vector<int>& prices) {
+    int bd=0,sd=0,profit=0;                 // buying day, selling day, profit
+    
+    for(int i=1;i<prices.size();i++)
+    {
+        if(prices[i]>=prices[i-1])
+            sd++;
+        else{
+            profit+=prices[sd]-prices[bd];
+            bd=sd=i;
+        }
+    }
+    profit+=prices[sd]-prices[bd];
+    
+    return profit;
+}
+
