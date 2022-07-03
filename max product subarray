@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxProduct(vector<int>& a) {
+        int n=a.size();
+        int ans=a[0];
+        int ma=ans;
+        int mi=ans;
+        
+        for(int i=1;i<n;i++){
+            if(a[i]<0){
+                swap(ma,mi);
+            }
+            ma=max(a[i],ma*a[i]);
+            mi=min(a[i],mi*a[i]);
+            ans=max(ans,ma);
+            
+        }
+        return ans;
+    }
+};
