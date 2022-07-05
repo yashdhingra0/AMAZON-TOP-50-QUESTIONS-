@@ -1,6 +1,6 @@
 vector<int> Solution::spiralOrder(const vector<vector<int> > &A) {
     
-    int T,B,L,R,dir;
+    int T,B,L,R,dir; // top, bottom , left, right 
     T=0;
     B=A.size()-1;
     L=0;
