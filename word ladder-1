@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int ladderLength(string start, string end, vector<string>& wordList) {
+        queue<string>q;
+        unordered_set<string>s;
+        int n=wordList.size();
+        int wordsize=start.size();
+        for(int i=0;i<n;i++){
+            s.insert(wordList[i]);
+        }
+        if(s.find(end)==s.end())return 0;
+        q.push(start);
+        int len=0;
+        while(!q.empty()){
+            len++;
+            int size=q.size();
+                for(int i=0;i<size;i++){
+                    string temp=q.front();
+                    q.pop();
+                    
+        for(int j=0;j<wordsize;j++){
+            char x=temp[j];
+            for(char ch='a';ch<='z'; ch++){
+                temp[j]=ch;
+                if(temp==end)return len+1;
+                if(s.find(temp)==s.end())continue;
+                
+                s.erase(temp);
+                q.push(temp);
+            }
+            temp[j]=x;
+        }
+                }
+            }
+         return 0;
+        }
+   
+        
+};
