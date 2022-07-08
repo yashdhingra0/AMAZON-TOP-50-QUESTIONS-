@@ -1,0 +1,52 @@
+https://leetcode.com/problems/house-robber/discuss/1133686/C%2B%2B-or-Five-Approaches%3A-Bruteforce-TopDown-Optimised-BottomUp-or-Time-and-Space
+
+brute force
+
+class Solution {
+public:
+    int ans=0;
+    int solve(vector<int> &a,int i){
+        int n=a.size();
+        if(i>=n)
+            return ans;
+        int pick=a[i]+solve(a,i+2);
+        int nonpick = solve(a,i+1);
+        return max(pick,nonpick);
+    }
+    
+    int rob(vector<int>& nums) {
+        int n= nums.size();
+       int x= solve(nums,0);
+        return x;
+    }
+        
+};
+
+
+class Solution {
+public:
+   
+ 
+    int solve(vector<int> &a,int i,vector<int> &dp){
+        int n=a.size();
+        if(i>=n)
+            return 0;
+        if(dp[i]!=-1)
+            return dp[i];
+        
+        int pick=a[i]+solve(a,i+2,dp);
+        int nonpick = solve(a,i+1,dp);
+         dp[i]= max(pick,nonpick);
+        return dp[i];
+    }
+    
+    int rob(vector<int>& nums) {
+        int n= nums.size();
+        vector<int>dp(n,-1);
+       int x= solve(nums,0,dp);
+        return x;
+    }
+        
+};
+    
+    
