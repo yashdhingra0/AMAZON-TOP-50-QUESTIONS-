@@ -1,0 +1,31 @@
+class Solution {
+public:
+    
+    int solve(vector<int> &a , int i, vector<int> &dp,int n){
+        if(i>n)
+            return 0;
+        if(dp[i]!=-1)
+            return dp[i];
+        int pick=a[i]+solve(a,i+2,dp,n);
+        int nonpick=solve(a,i+1,dp,n);
+        dp[i]=max(pick,nonpick);
+        return dp[i];
+    }
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)
+            return nums[0];
+        vector<int>dp(n,-1);
+        vector<int>dp1(n,-1);
+        int x=max(nums[0]+solve(nums,2,dp,n-2),solve(nums,1,dp1,n-1));
+        return x;
+        
+    }
+};
+
+
+
+
+
+
+
