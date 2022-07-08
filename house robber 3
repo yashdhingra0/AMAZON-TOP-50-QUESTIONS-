@@ -1,0 +1,44 @@
+class Solution {
+public:
+    
+    int ans = 0;
+    
+    unordered_map<TreeNode* , int> dp;
+    
+    int solve(TreeNode* p){
+        
+        if(p == NULL)
+            return 0;
+        
+        if(dp.find(p)!=dp.end())
+            return dp[p];
+        
+        //including
+        
+        int inc = p->val;
+        
+        if(p->left)
+            inc += solve(p->left->left) + solve(p->left->right);
+        
+        if(p->right)
+            inc += solve(p->right->left) + solve(p->right->right);
+        
+        //excluding
+        int exc = solve(p->left) + solve(p->right);
+        
+        ans = max(inc,exc);
+        
+        dp[p] = ans;
+        
+        return ans;
+        
+    }
+    
+    int rob(TreeNode* root) {
+        
+        solve(root);
+        
+        return ans;
+        
+    }
+};
