@@ -1,0 +1,29 @@
+diff diff pair btane hn jo target sum ek equal hon
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    
+    void solve(vector<int>& candidates, int target, vector<int>curr, vector<vector<int>>&ans,int currsum, int curridx){
+        
+        if(currsum>target)
+            return;
+        if(currsum == target){
+        ans.push_back(curr);}
+        for(int i=curridx;i<candidates.size();i++){
+            curr.push_back(candidates[i]);
+            currsum+=candidates[i];
+        solve(candidates,target,curr,ans,currsum,i);
+            curr.pop_back();
+            currsum-=candidates[i];
+        }
+        
+    }
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>>ans;
+        vector<int>curr;
+        solve(candidates,target,curr,ans,0,0);
+        return ans;
+    }
+};
