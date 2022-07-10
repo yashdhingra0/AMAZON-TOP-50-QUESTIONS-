@@ -1,4 +1,38 @@
 
+class Solution {
+    
+    static bool cmp( const vector<int>& v1,const vector<int>& v2 ) {
+        return v1[0] < v2[0];
+}    
+    
+public:
+    vector<vector<int>> merge(vector<vector<int>>& a) {
+        sort(a.begin(),a.end(),cmp);
+        vector<vector<int>>v;
+        int n=a.size();
+        int start=a[0][0];
+        int end=a[0][1];
+        for(int i=1;i<n;i++){
+            int start1=a[i][0];
+            int end1=a[i][1];
+            if(end<start1){
+            v.push_back({start,end});
+              start=start1;
+              end=end1;
+            }
+            else if(end1>=end){
+                end=end1;
+                
+            }
+               }
+        v.push_back({start,end});
+            return v;
+            }
+};
+
+//////////////////////
+
+
 struct Interval 
 { 
     int s, e; 
