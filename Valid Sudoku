@@ -15,7 +15,9 @@ public:
            
         int num= board[i][j]-'a';
            
-           if (rows[i].count(num))
+           if (rows[i].count(num)) //The count function returns 1 or 0 as the
+	                            //set contains unique elements only. It returns 1 if the value is present in the set container.
+				 // It returns 0 if it is not present in the container. 
 	  return false;
 
 	if (columns[j].count(num))
