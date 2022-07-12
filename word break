@@ -1,0 +1,40 @@
+brute force---->
+
+unordered_set<string> dict;
+    
+    bool wordBreak(string s, vector<string>& wordDict) {
+        for (string s: wordDict) {
+            dict.insert(s);
+        }
+        return checkWords(s);
+    }
+    
+    bool checkWords(string s) {
+        if (s.empty() || s == "") return true;
+        for(int i=0; i<s.size(); i++) {
+            if (dict.find(s.substr(0, i+1))!=dict.end()) {
+                if (checkWords(s.substr(i+1, s.size()-i-1))) return true;
+            }
+        }
+        return false;
+    }
+    
+    
+    dp approach----->
+    
+    
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> dict;
+        vector<bool> dp;
+        for (string s: wordDict) dict.insert(s);
+        for (int i=0; i<=s.size(); i++) dp.push_back(false);
+
+        dp[0] = true;
+        for(int i=1; i<=s.size(); i++) {
+            for(int j=0; j<i; j++) {
+                if (dp[j] && dict.find(s.substr(j, i-j))!=dict.end()) 
+                    dp[i] = true;
+            }
+        }
+        return dp[s.size()];
+    }
