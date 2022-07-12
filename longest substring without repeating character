@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n=s.size();
+        unordered_set<char>se;
+        int l=0;
+        int r=0;
+        int maxlength=0;
+        while(r<n){
+            if(se.find(s[r])==se.end()){
+                se.insert(s[r]);
+            if(se.size()>maxlength){
+                maxlength=se.size();}
+                r++;
+        }
+            else{
+                se.erase(s[l]);
+                l++;
+            }
+        }
+            return maxlength;
+        
+        
+    }
+};
