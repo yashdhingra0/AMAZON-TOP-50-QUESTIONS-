@@ -1,0 +1,44 @@
+
+class Solution {
+public:
+    int maxArea(vector<int>& a) {
+        int n=a.size();
+        int maxarea=INT_MIN;
+        for(int i=0;i<n-1;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                int x=min(a[i],a[j]);
+                int area=x*(j-i);
+               maxarea=max(maxarea,area);
+            }
+            
+        }
+        return maxarea;
+        
+    }
+};
+
+//////////////////////////////////////////////////////////////
+
+class Solution {
+public:
+    int maxArea(vector<int>& a) {
+        int n=a.size();
+        int i=0;
+        int j=n-1;
+        int maxarea=INT_MIN;
+        while(i<j){
+            int x=min(a[i],a[j]);
+            int area=x*(j-i);
+            maxarea=max(maxarea,area);
+             if(a[i]==x)
+                 i++;
+            else
+                j--;
+            
+        }
+        return maxarea;
+        
+    }
+};
