@@ -1,0 +1,44 @@
+class Solution {
+public:
+   
+    
+    bool dfs(vector<int> &vis, int i,int n, vector<int> &inloop,vector<vector<int>> &adj){
+        vis[i]=true;
+        inloop[i]=true;
+        for(auto x: adj[i]){
+            if(vis[x]==0)
+            {
+                if(dfs(vis,x,n,inloop,adj))
+                return true;
+            }
+            else if(vis[x]==1 && inloop[x]==1)
+            {
+                return true;
+            }
+        }
+        inloop[i]=0;
+        return false;
+    }
+    bool canFinish(int n ,vector<vector<int>>& arr) {
+       
+         
+        vector<vector<int>> adj(n);
+        for(int i=0 ; i<arr.size() ; i++){
+            adj[arr[i][1]].push_back(arr[i][0]);
+        }
+        
+        
+        
+        vector<int>vis(n,0);
+        vector<int>inloop(n,0);
+        
+        for(int i=0;i<n;i++){
+            if(vis[i]==0){
+               if(dfs(vis,i,n,inloop,adj)){
+                   return false;}
+            }
+        }
+        return true;
+        
+    }
+};
