@@ -1,0 +1,56 @@
+Input: grid = [[0,6,0],[5,8,7],[0,9,0]]
+Output: 24
+Explanation:
+[[0,6,0],
+ [5,8,7],
+ [0,9,0]]
+Path to get the maximum gold, 9 -> 8 -> 7.
+
+class Solution {
+public:
+    
+    int  dfs(vector<vector<int>> &grid , int i, int j,vector<vector<int>> &vis)
+    {
+        int m=grid.size();
+        int n=grid[0].size();
+        
+        vis[i][j]=1;
+        int mx=0;
+        int s=grid[i][j];
+        
+        int dirx[]={-1,0,1,0};
+        int diry[]={0,-1,0,1};
+        
+        for(int k=0;k<4;k++){
+            int r=i+dirx[k];
+            int c=j+diry[k];
+            
+            if(r>=0 && r<m && c>=0 && c<n && !vis[r][c] && grid[r][c]!=0)
+                mx=max(mx,dfs(grid,r,c,vis));
+        }
+        vis[i][j]=0;
+        return s+mx;
+        
+        
+        
+        
+    }
+    int getMaximumGold(vector<vector<int>>& grid) {
+        int m=grid.size();
+        int n=grid[0].size();
+        int ans=0;
+        
+        vector<vector<int>>vis(m,vector<int>(n,false));
+        
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j]!=0 && !vis[i][j]){
+                    ans=max(ans,dfs(grid,i,j,vis));
+                }
+            }
+        }
+        
+        return ans;
+        
+    }
+};
