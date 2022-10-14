@@ -1,0 +1,36 @@
+Input: digits = "23"
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+
+class Solution {
+public:
+    vector<string>ans;
+    
+    void solve(int index,vector<string>&key ,string digits,string prefix)
+    {
+        int n=digits.length();
+        if(index==n)
+        {
+            ans.push_back(prefix);
+            return;
+        }
+        
+        string letter =key[digits[index]-'0'];
+        for(int i=0;i<letter.length();i++)
+        {
+            prefix.push_back(letter[i]);
+            solve(index+1,key,digits,prefix);
+            prefix.pop_back();
+            
+        }
+    }
+    vector<string> letterCombinations(string digits) {
+        vector<string>key{"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+         if(digits=="")
+            return {};     
+        
+        solve(0,key,digits,"");
+        
+        return ans;
+        
+    }
+};
