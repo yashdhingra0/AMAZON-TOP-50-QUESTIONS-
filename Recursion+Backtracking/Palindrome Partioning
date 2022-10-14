@@ -1,0 +1,37 @@
+For example, given s = "aab",
+Return
+
+  [
+    ["a","a","b"]
+    ["aa","b"],
+  ]
+
+bool ispalindrome(string s){
+    for(int i=0;i<s.length()/2;i++){
+        if(s[i]!=s[s.length()-i-1])return false;
+    }
+    return true;
+}
+
+void parting(int ind,vector<string> x,vector<vector<string> > &ans, string A){
+    if(ind==A.length()){
+        ans.push_back(x);
+        return;
+    }
+    string s="";
+    for(int i=ind;i<A.length();i++){
+        s+=A[i];
+        if(ispalindrome(s)){
+            x.push_back(s);
+            parting(i+1,x,ans,A);
+            x.pop_back();
+        }
+    }
+    return;
+}
+vector<vector<string> > Solution::partition(string A) {
+    vector<vector<string> > ans;
+    vector<string> x;
+    parting(0,x,ans,A);
+    return ans;
+}
