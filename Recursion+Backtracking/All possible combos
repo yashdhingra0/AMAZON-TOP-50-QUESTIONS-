@@ -1,0 +1,29 @@
+vector<string> ans;
+
+void solve(vector<string>& A, int idx, string prefix)
+{
+    if(idx==A.size())
+    {
+        ans.push_back(prefix);
+        return;
+    }
+   
+    for(int i=0; i<A[idx].size(); i++)
+    {  
+       // s+A[idx][i]
+        prefix.push_back(A[idx][i]);
+        solve(A,idx+1,prefix);
+        prefix.pop_back();
+    }
+}
+
+
+vector<string> Solution::specialStrings(vector<string> &A) {
+    ans.clear();
+   
+    
+   
+    solve(A,0,"");
+   
+    return ans;
+}
