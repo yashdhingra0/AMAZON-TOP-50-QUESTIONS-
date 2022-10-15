@@ -1,0 +1,32 @@
+void solve(string &s, int close, int open, int A,  vector<string> &ans){
+    //if(l>r){
+       // return;
+   // }
+    if(close==A&&open==A){
+        ans.push_back(s);
+        return ;
+    }
+    
+    if(open<A){
+        
+        s.push_back('(');
+        solve(s,close,open+1,A, ans);
+        s.pop_back();}
+    
+
+    if(close<A){
+        if(close<open){
+        s.push_back(')');
+        solve(s,close+1,open,A, ans);
+        s.pop_back();
+    }}
+}
+
+vector<string> Solution::generateParenthesis(int A) {
+    string s ="";
+    vector<string> ans;
+    
+    solve(s,0,0,A, ans);
+   // reverse(ans.begin(), ans.end());
+    return ans;
+}
