@@ -1,0 +1,48 @@
+
+
+
+    
+    bool ispal(string s, int i , int j)
+    {
+       
+        while(i<=j)
+        {
+            if(s[i++]!=s[j--])return false;
+        }
+        return true;
+    }
+  min no of cuts required   
+    int solve(string s , int idx  )
+    {
+      if(idx==s.length()){
+          return 0;
+          
+      }  
+        
+        int mincost=INT_MAX;
+        for(int i=idx;i<s.length();i++){
+           
+            if(ispal(s, idx,i)){
+               // temp.push_back(x);
+              int cost=1+solve(s,i+1);
+                mincost=min(mincost,cost);
+                //temp.pop_back();
+            }
+        }
+        return mincost;
+        
+    }
+        
+
+class Solution {
+public:
+    int minCut(string s) {
+        
+        int n=s.length();
+        //vector<string>temp;
+        
+        return solve(s,0)-1;
+        
+        
+    }
+};
