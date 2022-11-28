@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+
+class hashmap
+{
+    vector<int>v;
+    int size;
+    public:
+    hashmap()
+    {
+        size=1e6+1;
+        v.resize(size);
+        fill(v.begin(),v.end(),-1);
+    }
+    
+    void put(int key , int val)
+    {
+        v[key]=val;
+    }
+    
+    int get(int key)
+    {
+        return v[key];
+    }
+    
+    void remove(int key)
+    {
+        v[key]=-1;
+    }
+};
+
+int main()
+{
+	hashmap* obj = new hashmap();
+    obj->put(2,3);
+    obj->put(3,4);
+    obj->put(5,6);
+    obj->put(7,8);
+    obj->put(7,9);
+    obj->remove(2);
+    int temp =obj->get(7);
+    cout<<temp<<endl;
+    
+    
+	return 0;
+}
