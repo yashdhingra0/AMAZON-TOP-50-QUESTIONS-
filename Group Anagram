@@ -1,0 +1,25 @@
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string,vector<string>>m;
+        int n=strs.size();
+
+        for(int i=0;i<n;i++)
+        {
+            string x= strs[i];
+            sort(strs[i].begin(),strs[i].end());
+            m[strs[i]].push_back(x);
+        }
+
+        vector<vector<string>>v;
+        
+        for(auto i:m)
+        {
+            v.push_back(i.second);
+        }
+        return v;
+    }
+};
