@@ -1,0 +1,54 @@
+Recursion NOtes 
+
+how to find subset ---
+class Solution {
+public:
+vector<vector<int>>ans;
+void solve(vector<int> nums , int curr, vector<int> temp)
+{
+    if(curr==nums.size())
+    {
+        ans.push_back(temp);
+        return;
+
+    }
+
+    temp.push_back(nums[curr]);
+    solve(nums,curr+1,temp);
+    temp.pop_back();
+    solve(nums,curr+1,temp);
+    return;
+}
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>temp;
+        solve(nums,0,temp);
+        return ans;
+    }
+};
+
+class Solution {
+public:
+vector<vector<int>>ans;
+void solve(vector<int> nums , int curr, vector<int> temp)
+{
+    if(curr==nums.size())
+    {
+        ans.push_back(temp);
+        return;
+
+    }
+    solve(nums,curr+1,temp);
+    temp.push_back(nums[curr]);
+    solve(nums,curr+1,temp);
+   / temp.pop_back();
+    
+    return;
+}
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>temp;
+        solve(nums,0,temp);
+        return ans;
+    }
+};
+
+Both the solutions are correct find the difference how are they making a decision tree
